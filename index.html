@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegance Studio | Salon & Makeup</title>
+    
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-dark': '#103C35', // Deep Emerald Green
+                        'accent-gold': '#B8860B', // Soft Gold/Copper
+                        'background-light': '#FDFCEE', // Soft Cream/Beige
+                        'secondary-text': '#5A6A6A',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'], // A touch of elegance for headers
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Load Google Fonts for Inter and Playfair Display -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <style>
+        /* ADDED: Smooth scrolling for all internal anchor links */
+        html { 
+            scroll-behavior: smooth;
+            /* Pushes anchor links down so the fixed header doesn't cover them */
+            scroll-padding-top: 7rem; 
+        }
+
+        /* Custom styles for aesthetic enhancements */
+        .shadow-soft {
+            box-shadow: 0 10px 30px -5px rgba(16, 60, 53, 0.1); /* Subtle emerald shadow */
+        }
+        .text-gradient {
+            background-image: linear-gradient(to right, #B8860B, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-background-light font-sans text-primary-dark antialiased">
+
+    <!-- Mobile Menu (Off-Canvas) -->
+    <div id="mobile-menu" class="fixed inset-0 bg-background-light z-40 hidden md:hidden p-8 transition-transform transform -translate-x-full duration-300">
+        <div class="flex justify-end">
+            <button onclick="toggleMenu()" class="text-4xl text-primary-dark">
+                &times;
+            </button>
+        </div>
+        <nav class="mt-12 space-y-6 text-center">
+            <a href="javascript:void(0)" onclick="showPage('home'); toggleMenu();" class="block text-3xl font-serif hover:text-accent-gold transition duration-200">Home</a>
+            <a href="javascript:void(0)" onclick="showPage('services-page'); toggleMenu();" class="block text-3xl font-serif hover:text-accent-gold transition duration-200">Services</a>
+            <a href="#trends" onclick="toggleMenu()" class="block text-3xl font-serif hover:text-accent-gold transition duration-200">Trends</a>
+            <a href="#team" onclick="toggleMenu()" class="block text-3xl font-serif hover:text-accent-gold transition duration-200">Team</a>
+            
+            <a href="javascript:void(0)" onclick="toggleMenu(); openModal();" class="block text-3xl font-serif hover:text-accent-gold transition duration-200">Book Now</a>
+        </nav>
+    </div>
+
+    <!-- Header & Navigation (Fixed/Sticky) -->
+    <header class="sticky top-0 z-30 bg-background-light/95 backdrop-blur-sm shadow-soft">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4 md:py-6">
+                
+                <!-- Logo -->
+                <a href="javascript:void(0)" onclick="showPage('home');" class="text-3xl font-serif font-bold text-primary-dark tracking-wider">
+                    Elegance<span class="text-accent-gold">.</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8 text-lg font-medium">
+                    <a href="javascript:void(0)" onclick="showPage('home');" class="hover:text-accent-gold transition duration-200">Home</a> 
+                    <a href="javascript:void(0)" onclick="showPage('services-page');" class="hover:text-accent-gold transition duration-200">Services</a>
+                    <a href="#trends" class="hover:text-accent-gold transition duration-200">Trending Styles</a>
+                    <a href="#team" class="hover:text-accent-gold transition duration-200">Our Artists</a>
+                    
+                    <a href="javascript:void(0)" onclick="openModal()" class="px-4 py-2 rounded-full bg-accent-gold text-background-light hover:bg-opacity-90 transition duration-200 shadow-lg">Book Now</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMenu()" class="md:hidden p-2">
+                    <svg class="w-6 h-6 text-primary-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="app-container">
+        
+        <!-- HOME PAGE CONTENT -->
+        <div id="home-page">
+            
+            <!-- Hero Section -->
+            <section class="relative h-[80vh] flex items-center justify-center bg-primary-dark text-background-light">
+                <div class="absolute inset-0 bg-primary-dark bg-opacity-50"></div>
+                <img src="kqffju3sgqmcnf3vkpre4c59i2.png" alt="Beauty Salon" class="absolute right-0 top-0 h-full w-1/2 object-cover opacity-50">
+                <div class="relative z-10 text-center max-w-4xl mx-auto p-4">
+                    <p class="text-xl sm:text-2xl font-serif mb-4 tracking-widest uppercase">The Art of You</p>
+                    <h1 class="text-5xl sm:text-7xl lg:text-8xl font-serif font-extrabold leading-tight">
+                        Where Beauty Meets <span class="text-gradient">Precision</span>
+                    </h1>
+                    <p class="mt-6 text-lg sm:text-xl font-light max-w-2xl mx-auto">
+                        Transform your look with our expert hair, color, and makeup artists, specializing in the latest global trends.
+                    </p>
+
+                    <a href="javascript:void(0)" onclick="openModal()" class="mt-10 inline-block px-8 py-3 text-lg font-semibold bg-accent-gold text-primary-dark rounded-full shadow-xl hover:shadow-2xl hover:scale-[1.03] transition duration-300 transform">
+                        Schedule Your Consultation
+                    </a>
+                </div>
+            </section>
+
+            <!-- Services Overview Section -->
+            <section id="services" class="py-16 md:py-24 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-4xl font-serif font-bold text-center mb-4 text-primary-dark">Our Signature Services</h2>
+                    <p class="text-lg text-secondary-text text-center mb-12 max-w-2xl mx-auto">
+                        From dramatic transformations to refined maintenance, we offer a comprehensive menu designed for modern luxury.
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        
+                        <div class="bg-background-light p-8 rounded-xl shadow-soft border-t-4 border-accent-gold transform hover:-translate-y-1 transition duration-300">
+                            <h3 class="text-2xl font-serif font-semibold mb-3">Hair & Bespoke Color</h3>
+                            <p class="text-secondary-text mb-4">Masterful cuts, custom balayage, vivid coloring, and deep conditioning treatments tailored to your unique hair goals.</p>
+                            <ul class="text-sm space-y-2 text-primary-dark/80">
+                                <li>&bull; Balayage & Foil Work</li>
+                                <li>&bull; Precision Haircuts</li>
+                                <li>&bull; Olaplex & Kérastase Treatments</li>
+                            </ul>
+                        </div>
+
+                        
+                        <div class="bg-background-light p-8 rounded-xl shadow-soft border-t-4 border-accent-gold transform hover:-translate-y-1 transition duration-300">
+                            <h3 class="text-2xl font-serif font-semibold mb-3">Professional Makeup</h3>
+                            <p class="text-secondary-text mb-4">Flawless looks for weddings, photoshoots, and special events. We specialize in both natural and glam styles.</p>
+                            <ul class="text-sm space-y-2 text-primary-dark/80">
+                                <li>&bull; Bridal & Event Makeup</li>
+                                <li>&bull; Airbrush Application</li>
+                                <li>&bull; Lash & Brow Design</li>
+                            </ul>
+                        </div>
+
+                        
+                        <div class="bg-background-light p-8 rounded-xl shadow-soft border-t-4 border-accent-gold transform hover:-translate-y-1 transition duration-300">
+                            <h3 class="text-2xl font-serif font-semibold mb-3">Nails & Wellness</h3>
+                            <p class="text-secondary-text mb-4">Signature manicures and pedicures using non-toxic, long-lasting polishes, coupled with essential grooming services.</p>
+                            <ul class="text-sm space-y-2 text-primary-dark/80">
+                                <li>&bull; Gel & Acrylic Extensions</li>
+                                <li>&bull; Luxury Spa Pedicures</li>
+                                <li>&bull; Waxing & Tinting</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Call to Action -->
+                    <div class="text-center mt-12">
+                         
+                        <a href="javascript:void(0)" onclick="showPage('services-page')" class="inline-block px-8 py-3 text-lg font-semibold border-2 border-primary-dark text-primary-dark rounded-full hover:bg-primary-dark hover:text-background-light transition duration-300 shadow-lg">
+                            View All Services & Pricing
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Trending Styles Section (Anchor: #trends) -->
+            <section id="trends" class="py-16 md:py-24 bg-primary-dark text-background-light">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-4xl font-serif font-bold text-center mb-4">Trending Colors & Styles</h2>
+                    <p class="text-lg text-background-light/80 text-center mb-12 max-w-3xl mx-auto">
+                        Inspired by the latest fashion weeks and celebrity looks, discover the colors and cuts defining the season.
+                    </p>
+
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        
+                        <div class="bg-white rounded-lg overflow-hidden shadow-xl group cursor-pointer">
+                            <!-- Image Fallback: Placehold.co is used for placeholders/mock images -->
+                            <img src="https://placehold.co/600x600/394747/FDFCEE?text=Coquette+Bows+Trend" onerror="this.src='https://placehold.co/600x600/394747/FDFCEE?text=Coquette+Bows+Trend';" alt="Coquette Bows Style" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105">
+                            <div class="p-4">
+                                <h3 class="text-xl font-serif text-primary-dark">Coquette Aesthetic</h3>
+                                <p class="text-sm text-secondary-text">Ribbon-based accessories & soft pastels.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg overflow-hidden shadow-xl group cursor-pointer">
+                            <img src="https://placehold.co/600x600/A0522D/FDFCEE?text=Expensive+Brunette+Color" onerror="this.src='https://placehold.co/600x600/A0522D/FDFCEE?text=Expensive+Brunette+Color';" alt="Expensive Brunette Color" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105">
+                            <div class="p-4">
+                                <h3 class="text-xl font-serif text-primary-dark">Expensive Brunette</h3>
+                                <p class="text-sm text-secondary-text">Dimensional, rich, and high-shine brown tones.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg overflow-hidden shadow-xl group cursor-pointer">
+                            <img src="https://placehold.co/600x600/E5A89C/FDFCEE?text=Clean+Girl+Makeup" onerror="this.src='https://placehold.co/600x600/E5A89C/FDFCEE?text=Clean+Girl+Makeup';" alt="Clean Girl Makeup Look" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105">
+                            <div class="p-4">
+                                <h3 class="text-xl font-serif text-primary-dark">Glowy Skin Makeup</h3>
+                                <p class="text-sm text-secondary-text">Minimalist base with a focus on fresh, radiant skin.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg overflow-hidden shadow-xl group cursor-pointer">
+                            <img src="https://placehold.co/600x600/5A6A6A/FDFCEE?text=Bixie+Haircut" onerror="this.src='https://placehold.co/600x600/5A6A6A/FDFCEE?text=Bixie+Haircut';" alt="Bixie Haircut Style" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105">
+                            <div class="p-4">
+                                <h3 class="text-xl font-serif text-primary-dark">The Bixie Cut</h3>
+                                <p class="text-sm text-secondary-text">Hybrid cut between a bob and a pixie, volume focused.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-12">
+                         
+                        <a href="javascript:void(0)" onclick="openModal()" class="inline-block px-8 py-3 text-lg font-semibold border-2 border-accent-gold text-accent-gold rounded-full hover:bg-accent-gold hover:text-primary-dark transition duration-300">
+                            Get The Look
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Our Team Section (Anchor: #team) -->
+            <section id="team" class="py-16 md:py-24 bg-background-light">
+                <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h2 class="text-4xl font-serif font-bold text-primary-dark mb-4">Meet Our Master Artists</h2>
+                    <p class="text-lg text-secondary-text mb-12">
+                        Our team is composed of award-winning stylists, colorists, and makeup professionals dedicated to advanced education and crafting your perfect look.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        
+                        <div class="p-6 bg-white rounded-xl shadow-soft">
+                            <img src="https://placehold.co/150x150/103C35/FDFCEE?text=A" alt="Artist Alex" class="w-36 h-36 rounded-full mx-auto mb-4 object-cover border-4 border-accent-gold">
+                            <h3 class="text-xl font-semibold font-serif text-primary-dark">Alex Chen</h3>
+                            <p class="text-sm text-accent-gold mb-2">Master Colorist</p>
+                            <p class="text-sm text-secondary-text">Specializes in balayage techniques and vivid color transformations.</p>
+                        </div>
+                        
+                        <div class="p-6 bg-white rounded-xl shadow-soft">
+                            <img src="https://placehold.co/150x150/103C35/FDFCEE?text=L" alt="Artist Lisa" class="w-36 h-36 rounded-full mx-auto mb-4 object-cover border-4 border-accent-gold">
+                            <h3 class="text-xl font-semibold font-serif text-primary-dark">Lisa Ray</h3>
+                            <p class="text-sm text-accent-gold mb-2">Bridal & Event Makeup</p>
+                            <p class="text-sm text-secondary-text">Known for creating flawless, long-lasting wedding and editorial looks.</p>
+                        </div>
+                        
+                        <div class="p-6 bg-white rounded-xl shadow-soft sm:col-span-2 lg:col-span-1">
+                            <img src="https://placehold.co/150x150/103C35/FDFCEE?text=R" alt="Artist Rex" class="w-36 h-36 rounded-full mx-auto mb-4 object-cover border-4 border-accent-gold">
+                            <h3 class="text-xl font-semibold font-serif text-primary-dark">Rex Stone</h3>
+                            <p class="text-sm text-accent-gold mb-2">Precision Stylist</p>
+                            <p class="text-sm text-secondary-text">Expert in texture cutting, modern bobs, and men's grooming.</p>
+                        </div>
+                    </div>
+                    <div class="text-center mt-12">
+                         
+                        <a href="javascript:void(0)" onclick="openModal()" class="inline-block px-8 py-3 text-lg font-semibold bg-accent-gold text-primary-dark rounded-full shadow-xl hover:shadow-2xl hover:scale-[1.03] transition duration-300 transform">
+                            Meet Your Stylist
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+        
+        <!-- SERVICES PAGE CONTENT -->
+        <div id="services-page" class="hidden">
+            <section class="pt-8 pb-16 md:pt-16 md:pb-24 bg-primary-dark text-background-light">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    
+                    
+                    <div class="mb-8">
+                        <a href="javascript:void(0)" onclick="showPage('home')" class="inline-flex items-center text-lg font-semibold text-accent-gold hover:text-white transition duration-200">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                            Back to Home
+                        </a>
+                    </div>
+                    
+                    <h1 class="text-5xl font-serif font-extrabold text-center mb-4 text-accent-gold">Full Service Menu</h1>
+                    <p class="text-xl text-background-light/90 text-center mb-16 max-w-3xl mx-auto">
+                        A detailed list of our offerings and current pricing. All prices are starting estimates and may vary based on hair length, density, and artist level.
+                    </p>
+
+                    <div class="space-y-16">
+                        
+                        
+                        <!-- 1. HAIR SERVICES -->
+                        <div class="bg-background-light p-8 md:p-12 rounded-2xl shadow-2xl border-t-8 border-accent-gold">
+                            <h2 class="text-4xl font-serif font-bold text-primary-dark mb-8 text-center">I. Hair & Styling</h2>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-primary-dark">
+                                
+                                
+                                <div class="flex justify-between items-start border-b border-gray-200 pb-3">
+                                    <div>
+                                        <h3 class="text-lg font-semibold">Women's Haircut & Blowout</h3>
+                                        <p class="text-sm text-secondary-text">Includes personalized consultation and deep conditioning rinse.</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-accent-gold ml-4">$95+</span>
+                                </div>
+                                
+                                <div class="flex justify-between items-start border-b border-gray-200 pb-3">
+                                    <div>
+                                        <h3 class="text-lg font-semibold">Men's Precision Cut</h3>
+                                        <p class="text-sm text-secondary-text">Detailed cut, wash, and style.</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-accent-gold ml-4">$65+</span>
+                                </div>
+                                
+                                
+                                <div class="flex justify-between items-start border-b border-gray-200 pb-3">
+                                    <div>
+                                        <h3 class="text-lg font-semibold">Signature Blowout</h3>
+                                        <p class="text-sm text-secondary-text">Professional wash and style for any event.</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-accent-gold ml-4">$55+</span>
+                                </div>
+                                
+                                <div class="flex justify-between items-start border-b border-gray-200 pb-3">
+                                    <div>
+                                        <h3 class="text-lg font-semibold">Updo/Formal Styling</h3>
+                                        <p class="text-sm text-secondary-text">Consultation required for bridal/special events.</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-accent-gold ml-4">$120+</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- 2. COLOR SERVICES -->
+                        <div class="bg-background-light p-8 md:p-12 rounded-2xl shadow-2xl border-t-8 border-accent-gold">
+                            <h2 class="text-4xl font-serif font-bold text-primary-dark mb-8 text-center">II. Color & Treatments</h2>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-primary-dark">
+                                
+                                <div class="flex justify-between items-start border-b border-gray-200 pb-3">
+                                    <div>
+                                        <h3 class="text-lg font-semibold">Single Process Color (Roots)</h3>
+                                        <p class="text-sm text-secondary-text">Color application on root regrowth only.</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-accent-gold ml-4">$110+</span>
+                                </div>
+                                
+                                <div class="flex justify-between items-start border-b border-gray-200 pb-3">
+                                    <div>
+                                        <h3 class="text-lg font-semibold">Full Balayage/Highlight</h3>
+                                        <p class="text-sm text-secondary-text">Hand-painted or foiled color for full dimension.</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-accent-gold ml-4">$250+</span>
+                                </div>
+                                
+                                <div class="flex justify-between items-start border-b border-gray-200 pb-3">
+                                    <div>
+                                        <h3 class="text-lg font-semibold">Gloss/Toner Refresh</h3>
+                                        <p class="text-sm text-secondary-text">Perfect for color maintenance and shine.</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-accent-gold ml-4">$60+</span>
+                                </div>
+                                
+                                <div class="flex justify-between items-start border-b border-gray-200 pb-3">
+                                    <div>
+                                        <h3 class="text-lg font-semibold">Olaplex Stand-Alone Treatment</h3>
+                                        <p class="text-sm text-secondary-text">Deep molecular repair treatment.</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-accent-gold ml-4">$80+</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3. MAKEUP & BEAUTY SERVICES -->
+                        <div class="bg-background-light p-8 md:p-12 rounded-2xl shadow-2xl border-t-8 border-accent-gold">
+                            <h2 class="text-4xl font-serif font-bold text-primary-dark mb-8 text-center">III. Makeup & Grooming</h2>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-primary-dark">
+                                
+                                <div class="flex justify-between items-start border-b border-gray-200 pb-3">
+                                    <div>
+                                        <h3 class="text-lg font-semibold">Full Face Makeup Application</h3>
+                                        <p class="text-sm text-secondary-text">Custom look for events, including lashes.</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-accent-gold ml-4">$100+</span>
+                                </div>
+                                
+                                <div class="flex justify-between items-start border-b border-gray-200 pb-3">
+                                    <div>
+                                        <h3 class="text-lg font-semibold">Bridal Makeup Trial</h3>
+                                        <p class="text-sm text-secondary-text">Detailed trial with your lead bridal artist.</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-accent-gold ml-4">$150</span>
+                                </div>
+                                
+                                
+                                <div class="flex justify-between items-start border-b border-gray-200 pb-3">
+                                    <div>
+                                        <h3 class="text-lg font-semibold">Lash & Brow Tinting</h3>
+                                        <p class="text-sm text-secondary-text">Enhancing color for long-lasting definition.</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-accent-gold ml-4">$50</span>
+                                </div>
+                                
+                                <div class="flex justify-between items-start border-b border-gray-200 pb-3">
+                                    <div>
+                                        <h3 class="text-lg font-semibold">Signature Manicure</h3>
+                                        <p class="text-sm text-secondary-text">Detailed nail care with premium polish.</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-accent-gold ml-4">$45</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    
+                    <div class="text-center mt-16">
+                        <p class="text-lg mb-6">Ready for your transformation?</p>
+                         
+                        <a href="javascript:void(0)" onclick="openModal()" class="inline-block px-10 py-4 text-xl font-semibold bg-accent-gold text-primary-dark rounded-full shadow-xl hover:shadow-2xl hover:scale-[1.03] transition duration-300 transform">
+                            Book Your Appointment Now
+                        </a>
+                    </div>
+                     
+                    <div class="mt-16 text-center">
+                        <a href="javascript:void(0)" onclick="showPage('home')" class="inline-flex items-center text-lg font-semibold text-accent-gold hover:text-white transition duration-200 border border-accent-gold px-6 py-2 rounded-full">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                            Return to Homepage
+                        </a>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+        
+        <!-- Modal Backdrop -->
+        <div onclick="closeModal()" class="absolute inset-0 bg-primary-dark opacity-80 transition-opacity duration-300"></div>
+
+        
+        <!-- Modal Content -->
+        <div id="modal-content" class="relative bg-background-light w-full max-w-md mx-auto rounded-2xl shadow-2xl transform scale-95 opacity-0 transition-all duration-300">
+            
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-primary-dark hover:text-accent-gold transition duration-200" aria-label="Close Booking Form">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+
+            
+            <div class="p-8">
+                <h2 class="text-3xl font-serif font-bold text-center mb-2 text-primary-dark">Book Your Consultation</h2>
+                <p class="text-md text-secondary-text text-center mb-6">
+                    Fill out the form below and we will contact you within 24 hours to confirm your appointment.
+                </p>
+
+                <form class="space-y-6 text-primary-dark">
+                    <div>
+                        <label for="modal-name" class="block text-sm font-medium">Full Name</label>
+                        <input type="text" id="modal-name" name="name" placeholder="Jane Doe" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-accent-gold focus:border-accent-gold" required>
+                    </div>
+                    <div>
+                        <label for="modal-email" class="block text-sm font-medium">Email Address</label>
+                        <input type="email" id="modal-email" name="email" placeholder="jane@example.com" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-accent-gold focus:border-accent-gold" required>
+                    </div>
+                    <div>
+                        <label for="modal-service" class="block text-sm font-medium">Desired Service</label>
+                        <select id="modal-service" name="service" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-accent-gold focus:border-accent-gold">
+                            <option>Hair Cut & Style</option>
+                            <option>Color & Balayage</option>
+                            <option>Special Event Makeup</option>
+                            <option>Consultation</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="modal-message" class="block text-sm font-medium">Message / Special Request</label>
+                        <textarea id="modal-message" name="message" rows="3" placeholder="I'm interested in the Expensive Brunette trend..." class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-accent-gold focus:border-accent-gold"></textarea>
+                    </div>
+                    <!-- Note: The form submit does nothing in this pure static demo. -->
+                    <button type="submit" class="w-full py-3 bg-accent-gold text-primary-dark font-bold text-lg rounded-md hover:bg-opacity-90 transition duration-200 transform hover:scale-[1.01]">
+                        Submit Booking Request
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="bg-primary-dark/90 text-background-light py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-2xl font-serif font-bold text-accent-gold mb-4">Elegance Studio</p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-8 text-sm mb-4">
+                <p>123 Beauty Blvd, Stylist City, 10010</p>
+                <p>Call Us: (555) 555-5555</p>
+                <p>Open: Tue - Sat, 9am - 6pm</p>
+            </div>
+            <div class="flex justify-center space-x-6 text-xl mt-4">
+                
+                <a href="#" class="hover:text-accent-gold transition duration-200" aria-label="Instagram">
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.5" y1="6.5" y2="6.5"></line></svg>
+                </a>
+                <a href="#" class="hover:text-accent-gold transition duration-200" aria-label="Facebook">
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                </a>
+            </div>
+            <p class="text-xs mt-6 text-background-light/50">&copy; 2025 Elegance Studio. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for Mobile Menu Toggle and Page Routing
+        const mobileMenu = document.getElementById('mobile-menu');
+        const homePage = document.getElementById('home-page');
+        const servicesPage = document.getElementById('services-page');
+        
+        // Modal elements
+        const bookingModal = document.getElementById('booking-modal');
+        const modalContent = document.getElementById('modal-content');
+
+        /**
+         * Switches the main content display between different sections/pages.
+         * @param {string} pageId - The ID of the page to show ('home' or 'services-page').
+         */
+        function showPage(pageId) {
+            // Hide all pages first
+            homePage.classList.add('hidden');
+            servicesPage.classList.add('hidden');
+
+            // Show the requested page
+            if (pageId === 'home') {
+                homePage.classList.remove('hidden');
+                
+                // IMPORTANT FIX: Clear the URL hash and scroll to the absolute top.
+                window.history.replaceState({}, document.title, window.location.pathname);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else if (pageId === 'services-page') {
+                servicesPage.classList.remove('hidden');
+                // Scroll to top of the new content
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+
+        /**
+         * Opens the booking modal with a transition effect.
+         */
+        function openModal() {
+            bookingModal.classList.remove('hidden');
+            bookingModal.classList.add('flex'); // Use flex to center the content
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+
+            // Apply transition effects after a short delay
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        /**
+         * Closes the booking modal with a transition effect.
+         */
+        function closeModal() {
+            // Apply transition effects
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            document.body.style.overflow = ''; // Restore background scrolling
+
+            // Hide the modal completely after transition completes
+            setTimeout(() => {
+                bookingModal.classList.remove('flex');
+                bookingModal.classList.add('hidden');
+            }, 300); // Duration matches Tailwind's duration-300
+        }
+
+        /**
+         * Toggles the visibility and accessibility state of the mobile navigation menu.
+         */
+        function toggleMenu() {
+            const isHidden = mobileMenu.classList.contains('-translate-x-full');
+            
+            if (isHidden) {
+                // Show the menu
+                mobileMenu.classList.remove('hidden');
+                setTimeout(() => {
+                    mobileMenu.classList.remove('-translate-x-full');
+                    mobileMenu.classList.add('translate-x-0');
+                }, 10); // Small delay for transition to work
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+            } else {
+                // Hide the menu
+                mobileMenu.classList.remove('translate-x-0');
+                mobileMenu.classList.add('-translate-x-full');
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                }, 300); // Wait for the transition to finish
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+        }
+    </script>
+</body>
+</html>
